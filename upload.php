@@ -1,3 +1,12 @@
+<?php
+session_start();
+$error = $_SESSION['error'] ?? '';
+unset($_SESSION['error']);
+
+$error = $_SESSION['error'] ?? '';
+unset($_SESSION['error']);
+?>
+
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
@@ -43,7 +52,7 @@
                 </div>
                 <p class="text-white-50 mb-4">Select a file to securely store it in your vault.</p>
                 
-                <form action="list.php" method="POST" enctype="multipart/form-data">
+                <form action="doUpload.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-4">
                         <label for="fileUpload" class="form-label text-white-50 small mb-1">Choose File</label>
                         <input class="form-control" type="file" id="fileUpload" name="fileUpload" required>
@@ -51,6 +60,13 @@
                     <div class="d-grid mt-4">
                         <button type="submit" class="btn btn-primary fw-medium">Upload Now</button>
                     </div>
+                    <?php if($error !== ''): ?>
+                        
+                        <div class="alert alert-danger py-2" role="alert">
+                            <?= htmlspecialchars($error) ?>
+                        </div>
+
+                    <?php endif ?>
                 </form>
             </div>
         </div>
