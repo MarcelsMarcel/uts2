@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['username']) && isset(
         if(password_verify($password, $saved_password)) {
             $_SESSION['user_id'] = $user_id;
             $_SESSION['username'] = $username;
+            session_regenerate_id(true);
             header("location: index.php");
             exit;
         } else { 
