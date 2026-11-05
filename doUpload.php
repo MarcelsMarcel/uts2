@@ -1,5 +1,10 @@
     <?php
     session_start();
+    if (!isset($_SESSION['user_id'])) {
+    $_SESSION['error'] = "Please login first.";
+    header("Location: login.php");
+    exit();
+}
     // ur mission is after create connection to database, you need to implement the following functionalities in this file:
     // 1. Create a POST request to handle file upload form submission & validate the user session to ensure the user is authenticated before allowing file upload
     // 2. Validate the uploaded file to ensure it meets the required criteria (e.g., file type, size limit)
